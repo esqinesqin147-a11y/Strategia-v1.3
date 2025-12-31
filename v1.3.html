@@ -135,4 +135,51 @@
         } else { msg(dict[lang].req + req, "var(--red)"); }
         updateUI();
                   }
-                  
+                      function enemyLogic() {
+        setTimeout(() => {
+            let playerZones = document.querySelectorAll('.player:not(#zone-4)');
+            if(playerZones.length > 0) {
+                let target = playerZones[Math.floor(Math.random()*playerZones.length)];
+                target.classList.add('under-attack');
+                msg(dict[lang].atk, "var(--red)");
+                
+                setTimeout(() => {
+                    let defensePower = inf + (tanks * 50);
+                    if(defensePower < conf[diff].aiPower) {
+                        target.classList.remove('under-attack', 'player');
+                        target.classList.add('enemy');
+                        target.innerHTML = "ZONE";
+                        provs--;
+                        msg(dict[lang].loss, "var(--red)");
+                    } else {
+                        target.classList.remove('under-attack');
+                        inf -= 50; if(inf < 0) inf = 0;
+                        msg(dict[lang].def, "var(--green)");
+                    }
+                    updateUI();
+                }, 4000);
+            }
+            enemyLogic();
+        }, conf[diff].aiSpeed);
+    }
+
+    function updateUI() {
+        document.getElementById('vG').innerText = gold;
+        document.getElementById('vI').innerText = inf;
+        document.getElementById('vT').innerText = tanks;
+        document.getElementById('vS').innerText = Math.floor(sci);
+        document.getElementById('lGold').innerText = dict[lang].g;
+        document.getElementById('lInf').innerText = dict[lang].i;
+        document.getElementById('lTank').innerText = dict[lang].t;
+        document.getElementById('lSci').innerText = dict[lang].s;
+        document.getElementById('bI').innerText = dict[lang].bI;
+        document.getElementById('bT').innerText = dict[lang].bT;
+        document.getElementById('bA').innerText = dict[lang].bA;
+        document.getElementById('btnTech').innerText = dict[lang].bTech + " (Lvl " + tech + ")";
+    }
+
+    function msg(t, c) { let m = document.getElementById('msg'); m.innerText = t; m.style.color = c; }
+</script>
+</body>
+</html>
+
