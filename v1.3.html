@@ -64,4 +64,13 @@
             <button class="act-btn btn-tech" onclick="upTech()" id="btnTech">TEXNOLOGİYA (Lvl 1)</button>
         </div>
               </div>
-              
+              <script>
+    let lang = 'az'; let diff = 'easy';
+    let gold = 100, inf = 0, tanks = 0, sci = 0, provs = 1, tech = 1, selected = null;
+    
+    const conf = { 
+        easy: { inc: 15, cost: 150, aiSpeed: 15000, aiPower: 200 }, 
+        normal: { inc: 10, cost: 250, aiSpeed: 10000, aiPower: 400 }, 
+        hard: { inc: 5, cost: 400, aiSpeed: 7000, aiPower: 700 } 
+    };
+                  
