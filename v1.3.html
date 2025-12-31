@@ -88,4 +88,28 @@
         document.getElementById('d3').innerText = dict[lang].d3;
         updateUI();
                   }
-                  
+         function setDiff(d, b) {
+        diff = d;
+        document.querySelectorAll('.diff-btn').forEach(x => x.classList.remove('diff-active'));
+        b.classList.add('diff-active');
+    }
+    function startGame() {
+        document.getElementById('main-menu').style.display = "none";
+        document.getElementById('game-ui').style.display = "flex";
+        init();
+    }
+    function init() {
+        const cont = document.getElementById('mapContainer');
+        for(let i=0; i<9; i++) {
+            let d = document.createElement('div');
+            d.className = 'tile ' + (i===4 ? 'player' : 'enemy');
+            d.id = "zone-"+i;
+            d.innerHTML = i===4 ? '<b>HQ</b>' : 'ZONE';
+            d.onclick = () => {
+                document.querySelectorAll('.tile').forEach(x => x.classList.remove('selected'));
+                d.classList.add('selected');
+                selected = d;
+            };
+            cont.appendChild(d);
+                      }
+                      
