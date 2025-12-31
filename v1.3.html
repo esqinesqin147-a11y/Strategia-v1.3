@@ -112,4 +112,27 @@
             };
             cont.appendChild(d);
                       }
-                      
+                    setInterval(() => {
+            gold += provs * conf[diff].inc;
+            sci += provs * tech;
+            updateUI();
+        }, 1000);
+        enemyLogic();
+    }
+    function buyInf() { if(gold>=30) { gold-=30; inf+=20; updateUI(); } }
+    function buyTank() { if(gold>=120) { gold-=120; tanks+=1; updateUI(); } }
+    function upTech() { let c = tech * 50; if(sci>=c) { sci-=c; tech++; updateUI(); } }
+    function doAttack() {
+        if(!selected || selected.classList.contains('player')) return;
+        let power = inf + (tanks * 50);
+        let req = conf[diff].cost + (provs * 80);
+        if(power >= req) {
+            inf -= Math.floor(req/2.5);
+            provs++;
+            selected.classList.replace('enemy', 'player');
+            selected.innerHTML = "<b>FƏTH</b>";
+            if(provs === 9) { alert(dict[lang].win); location.reload(); }
+        } else { msg(dict[lang].req + req, "var(--red)"); }
+        updateUI();
+                  }
+                  
