@@ -73,4 +73,19 @@
         normal: { inc: 10, cost: 250, aiSpeed: 10000, aiPower: 400 }, 
         hard: { inc: 5, cost: 400, aiSpeed: 7000, aiPower: 700 } 
     };
+             const dict = {
+        az: { play: "OYUNA BAŞLA", win: "ZƏFƏR! DÜNYA SİZİNDİR.", g: "QIZIL", i: "PİYADA", t: "TANK", s: "ELM", bI: "AL PİYADA (30Q)", bT: "AL TANK (120Q)", bA: "HÜCUM", bTech: "TEXNOLOGİYA", d1: "ASAN", d2: "NORMAL", d3: "ÇƏTİN", atk: "XƏBƏRDARLIQ: DÜŞMƏN HÜCUM EDİR!", loss: "İTKİ! BİR ZONANI İTİRDİK!", def: "HÜCUM DƏF EDİLDİ!", req: "GÜC ÇATMIR! LAZIMDIR: " },
+        en: { play: "START GAME", win: "VICTORY! THE WORLD IS YOURS.", g: "GOLD", i: "INFANTRY", t: "TANK", s: "SCIENCE", bI: "BUY INF (30G)", bT: "BUY TANK (120G)", bA: "ATTACK", bTech: "TECHNOLOGY", d1: "EASY", d2: "NORMAL", d3: "HARD", atk: "WARNING: ENEMY IS ATTACKING!", loss: "LOSS! WE LOST A ZONE!", def: "ATTACK REPELLED!", req: "NOT ENOUGH POWER! NEED: " }
+    };
+
+    function changeLang(l, btn) {
+        lang = l;
+        document.querySelectorAll('.l-btn').forEach(b => b.classList.remove('active-l'));
+        btn.classList.add('active-l');
+        document.getElementById('playBtn').innerText = dict[lang].play;
+        document.getElementById('d1').innerText = dict[lang].d1;
+        document.getElementById('d2').innerText = dict[lang].d2;
+        document.getElementById('d3').innerText = dict[lang].d3;
+        updateUI();
+                  }
                   
